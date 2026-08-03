@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-label="Floral background">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fde8c2" />
+      <stop offset="100%" stop-color="#f2d3a6" />
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bg)" />
+  <g fill="none" stroke="#b8893c" stroke-opacity="0.35" stroke-width="2">
+    <path d="M80 120c160 80 220 200 230 330" />
+    <path d="M1500 140c-180 60-290 160-340 320" />
+    <path d="M220 860c120-140 270-230 420-260" />
+    <path d="M1480 820c-160-140-310-220-470-250" />
+  </g>
+</svg>

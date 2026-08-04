@@ -11,6 +11,9 @@ import Memories from "@/components/memories";
 import MusicPlayer from "@/components/music-player";
 import ThankYou from "@/components/thank-you";
 
+const EASE_LUXURY: [number, number, number, number] = [0.22, 1, 0.36, 1];
+const DURATION_LUXURY = 0.7;
+
 export default function InvitationExperience() {
   const [stage, setStage] = useState<"hero" | "invitation">("hero");
   const [isCinematicVisible, setIsCinematicVisible] = useState(false);
@@ -62,7 +65,7 @@ export default function InvitationExperience() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.9, ease: "easeInOut" }}
+            transition={{ duration: DURATION_LUXURY, ease: EASE_LUXURY }}
           >
             <Hero onBeginStory={handleOpenInvitation} />
           </motion.div>
@@ -71,7 +74,7 @@ export default function InvitationExperience() {
             key="invitation-content"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
+            transition={{ duration: DURATION_LUXURY, ease: EASE_LUXURY }}
             className="overflow-x-hidden"
           >
             <CinematicIntro onVisibilityChange={setIsCinematicVisible} />

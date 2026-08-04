@@ -1,6 +1,9 @@
 import type { Variants } from "framer-motion";
 import { HERO_ANIMATION } from "@/components/hero.constants";
 
+const EASE_LUXURY: [number, number, number, number] = [0.22, 1, 0.36, 1];
+const DURATION_LUXURY = 0.7;
+
 export const heroImageVariants: Variants = {
   initial: {
     opacity: 0,
@@ -10,8 +13,8 @@ export const heroImageVariants: Variants = {
     opacity: 1,
     scale: HERO_ANIMATION.imageScaleTo,
     transition: {
-      opacity: { duration: HERO_ANIMATION.imageFadeDuration, ease: "easeOut" },
-      scale: { duration: HERO_ANIMATION.imageScaleDuration, ease: [0.16, 1, 0.3, 1] },
+      opacity: { duration: DURATION_LUXURY, ease: EASE_LUXURY },
+      scale: { duration: DURATION_LUXURY, ease: EASE_LUXURY },
     },
   },
 };
@@ -21,7 +24,7 @@ export const heroNamesVariants: Variants = {
   animate: {
     opacity: 1,
     y: 0,
-    transition: { duration: HERO_ANIMATION.namesDuration, ease: "easeOut", delay: 0.3 },
+    transition: { duration: DURATION_LUXURY, ease: EASE_LUXURY, delay: 0.12 },
   },
 };
 
@@ -30,7 +33,7 @@ export const heroDateVariants: Variants = {
   animate: {
     opacity: 1,
     y: 0,
-    transition: { duration: 1.15, ease: "easeOut", delay: 0.6 },
+    transition: { duration: DURATION_LUXURY, ease: EASE_LUXURY, delay: 0.24 },
   },
 };
 
@@ -39,7 +42,7 @@ export const heroBeginVariants: Variants = {
   animate: {
     opacity: 1,
     y: 0,
-    transition: { duration: 1.05, ease: "easeOut", delay: 0.9 },
+    transition: { duration: DURATION_LUXURY, ease: EASE_LUXURY, delay: 0.36 },
   },
 };
 

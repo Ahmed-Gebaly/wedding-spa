@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f7f2e7;
-  --foreground: #201815;
-  --paper: #fffaf0;
+  --background: #f9f4ec;
+  --foreground: #40382f;
+  --paper: #fffdf8;
   --ink-soft: #5c4a44;
-  --gold-base: #c8a56a;
-  --gold-muted: #b9975f;
-  --gold-strong: #d4b274;
+  --gold-base: #c7a56a;
+  --gold-muted: #a78652;
+  --gold-strong: #c7a56a;
   --champagne-gold: var(--gold-base);
   --lux-surface-1: #fdf7ec;
   --lux-surface-2: #fbf3e5;
@@ -19,20 +19,27 @@
   --wine-deeper: #5e1527;
   --gold: var(--gold-muted);
   --wine: #7b1f33;
-  --border-soft: #e6d8c2;
+  --border-soft: rgba(199, 165, 106, 0.35);
+  --button-pearl: #f6f0e6;
+  --button-pearl-hover: #fff8f1;
+  --shadow-soft: 0 12px 40px rgba(0, 0, 0, 0.08);
+  --radius-card: 1.7rem;
+  --radius-button: 18px;
+  --ease-luxury: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-luxury: 700ms;
   --max-content: 72rem;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: "DM Sans", sans-serif;
+  --font-sans: "Inter", sans-serif;
 }
 
 body {
   min-height: 100vh;
   color: var(--foreground);
-  font-family: "DM Sans", sans-serif;
+  font-family: "Inter", sans-serif;
   background:
     radial-gradient(circle at 12% 10%, #fff4d6 0%, transparent 32%),
     radial-gradient(circle at 88% 6%, #f3dbc3 0%, transparent 25%),
@@ -43,37 +50,37 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: "Cormorant Garamond", serif;
+  font-family: "Cinzel", "Cormorant Garamond", serif;
   letter-spacing: 0.02em;
 }
 
 .arabic-display {
-  font-family: "Aref Ruqaa", serif;
+  font-family: "Amiri Quran", serif;
   line-height: 1.06;
 }
 
 .pixelify-sans-wedding {
-  font-family: "DM Sans", sans-serif;
+  font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
 }
 
 .aref-ruqaa-regular {
-  font-family: "Aref Ruqaa", serif;
+  font-family: "Amiri Quran", serif;
   font-weight: 400;
   font-style: normal;
 }
 
 .aref-ruqaa-bold {
-  font-family: "Aref Ruqaa", serif;
+  font-family: "Amiri Quran", serif;
   font-weight: 700;
   font-style: normal;
 }
 
 a {
   text-decoration: none;
-  color: #464feb;
+  color: inherit;
 }
 
 tr th,
@@ -93,10 +100,48 @@ tr th {
 .section-card {
   background-color: color-mix(in oklab, var(--paper) 92%, white 8%);
   border: 1px solid var(--border-soft);
-  border-radius: 1.2rem;
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-soft);
+}
+
+.luxury-card {
+  border-radius: var(--radius-card);
+  border: 1px solid var(--border-soft);
+  box-shadow: var(--shadow-soft);
+}
+
+.luxury-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: var(--radius-button);
+  border: 1px solid var(--border-soft);
+  background: linear-gradient(180deg, var(--button-pearl) 0%, var(--button-pearl-hover) 100%);
+  color: color-mix(in oklab, var(--gold-base) 74%, #765d36 26%);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-family: "Cinzel", "Cormorant Garamond", serif;
   box-shadow:
-    0 12px 28px rgb(32 24 21 / 0.08),
-    inset 0 1px 0 rgb(255 255 255 / 0.4);
+    0 10px 24px rgba(97, 76, 48, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  transition:
+    transform var(--duration-luxury) var(--ease-luxury),
+    box-shadow var(--duration-luxury) var(--ease-luxury),
+    background-color var(--duration-luxury) var(--ease-luxury);
+}
+
+.luxury-action:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 14px 28px rgba(97, 76, 48, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  background: linear-gradient(180deg, var(--button-pearl-hover) 0%, #fff4e9 100%);
+}
+
+.luxury-action:focus-visible {
+  outline: 2px solid color-mix(in oklab, var(--gold-base) 75%, #fff 25%);
+  outline-offset: 2px;
 }
 
 .gold-divider {
@@ -895,19 +940,20 @@ tr th {
   gap: 12px;
   min-width: min(700px, 90%);
   padding: 20px 30px;
-  border-radius: 20px;
-  border: 1px solid color-mix(in oklab, var(--gold-base) 58%, #efe2c8 42%);
-  background:
-    linear-gradient(180deg, rgba(255, 250, 242, 0.95) 0%, rgba(247, 236, 216, 0.96) 100%);
-  color: color-mix(in oklab, var(--gold-base) 72%, #7c6641 28%);
+  border-radius: var(--radius-button);
+  border: 1px solid var(--border-soft);
+  background: linear-gradient(180deg, var(--button-pearl) 0%, var(--button-pearl-hover) 100%);
+  color: color-mix(in oklab, var(--gold-base) 74%, #765d36 26%);
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  font-family: "Cormorant Garamond", "Didot", serif;
+  font-family: "Cinzel", "Cormorant Garamond", serif;
   font-size: clamp(30px, 3.8vw, 42px);
   box-shadow:
     0 12px 26px rgba(97, 76, 48, 0.16),
     inset 0 1px 0 rgba(255, 255, 255, 0.82);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition:
+    transform var(--duration-luxury) var(--ease-luxury),
+    box-shadow var(--duration-luxury) var(--ease-luxury);
 }
 
 .details-calendar-cta:hover {
@@ -1283,13 +1329,13 @@ tr th {
   justify-content: center;
   gap: 9px;
   padding: 14px 10px;
-  border-radius: 14px;
-  border: 1px solid color-mix(in oklab, var(--gold-base) 58%, #efe2c8 42%);
-  background: linear-gradient(180deg, rgba(255, 250, 242, 0.95) 0%, rgba(247, 236, 216, 0.96) 100%);
-  color: color-mix(in oklab, var(--gold-base) 72%, #7c6641 28%);
+  border-radius: var(--radius-button);
+  border: 1px solid var(--border-soft);
+  background: linear-gradient(180deg, var(--button-pearl) 0%, var(--button-pearl-hover) 100%);
+  color: color-mix(in oklab, var(--gold-base) 74%, #765d36 26%);
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  font-family: "Cormorant Garamond", "Didot", serif;
+  font-family: "Cinzel", "Cormorant Garamond", serif;
   font-size: clamp(22px, 2.5vw, 30px);
   box-shadow:
     0 10px 22px rgba(97, 76, 48, 0.14),
@@ -1590,18 +1636,20 @@ tr th {
   gap: 10px;
   min-width: min(520px, 92%);
   padding: 18px 22px;
-  border-radius: 16px;
-  border: 1px solid color-mix(in oklab, var(--gold-base) 58%, #efe2c8 42%);
-  background: linear-gradient(180deg, rgba(255, 250, 242, 0.95) 0%, rgba(247, 236, 216, 0.96) 100%);
-  color: color-mix(in oklab, var(--gold-base) 72%, #7c6641 28%);
+  border-radius: var(--radius-button);
+  border: 1px solid var(--border-soft);
+  background: linear-gradient(180deg, var(--button-pearl) 0%, var(--button-pearl-hover) 100%);
+  color: color-mix(in oklab, var(--gold-base) 74%, #765d36 26%);
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  font-family: "Cormorant Garamond", "Didot", serif;
+  font-family: "Cinzel", "Cormorant Garamond", serif;
   font-size: clamp(30px, 3.4vw, 42px);
   box-shadow:
     0 12px 26px rgba(97, 76, 48, 0.16),
     inset 0 1px 0 rgba(255, 255, 255, 0.82);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition:
+    transform var(--duration-luxury) var(--ease-luxury),
+    box-shadow var(--duration-luxury) var(--ease-luxury);
 }
 
 .location-cta:hover {
@@ -1641,6 +1689,17 @@ tr th {
   z-index: 1;
   margin-top: 6px;
   color: var(--gold-base);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 @media (max-width: 640px) {

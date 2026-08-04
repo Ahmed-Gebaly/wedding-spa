@@ -5,13 +5,10 @@ import { AnimatePresence, motion } from "framer-motion";
 import Countdown from "@/components/countdown";
 import CinematicIntro from "@/components/cinematic-intro";
 import Details from "@/components/details";
-import Gallery from "@/components/gallery";
 import Hero from "@/components/hero";
-import Invitation from "@/components/invitation";
 import Location from "@/components/location";
 import Memories from "@/components/memories";
 import MusicPlayer from "@/components/music-player";
-import Story from "@/components/story";
 import ThankYou from "@/components/thank-you";
 
 export default function InvitationExperience() {
@@ -81,9 +78,6 @@ export default function InvitationExperience() {
             <Countdown />
             <Details />
             <Location />
-            <Story />
-            <Gallery />
-            <Invitation />
             <Memories />
             <ThankYou />
           </motion.main>

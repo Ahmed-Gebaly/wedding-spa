@@ -1345,6 +1345,48 @@ tr th {
     inset 0 1px 0 rgba(255, 255, 255, 0.72);
 }
 
+.thank-you-background-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.thank-you-background-image {
+  object-fit: cover;
+  object-position: center center;
+  transform: scale(0.9);
+  animation: cinematic-ken-burns 22s ease-in-out infinite alternate;
+}
+
+.thank-you-background-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0) 55%, rgba(0, 0, 0, 0.07) 100%);
+}
+
+.thank-you-paper-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 252, 246, 0.42),
+    rgba(255, 252, 246, 0.16) 45%,
+    transparent 72%
+  );
+}
+
+.thank-you-paper-grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: radial-gradient(#bfae91 0.6px, transparent 0.6px);
+  background-size: 2.4px 2.4px;
+}
+
 .thank-you-ornament-top,
 .thank-you-eyebrow,
 .thank-you-title,

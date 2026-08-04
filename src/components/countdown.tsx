@@ -2,9 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { ArrowDown, CalendarDays } from "lucide-react";
-import Image from "next/image";
 import { weddingContent } from "@/content/wedding";
-import { assetPath } from "@/lib/asset-path";
+import LuxurySectionShell from "@/components/ui/luxury-section-shell";
 
 type TimeLeft = {
   days: number;
@@ -58,22 +57,7 @@ export default function Countdown() {
   }, []);
 
   return (
-    <section className="content-shell countdown-shell py-10 sm:py-16">
-      <div className="countdown-luxury-card p-6 text-center sm:p-10">
-        <div className="countdown-background-layer" aria-hidden="true">
-          <Image
-            src={assetPath("/cinematic.png")}
-            alt=""
-            fill
-            sizes="100vw"
-            className="countdown-background-image"
-            priority={false}
-          />
-          <div className="countdown-background-vignette" />
-          <div className="countdown-paper-glow" />
-          <div className="countdown-paper-grain" />
-        </div>
-
+    <LuxurySectionShell sectionClassName="countdown-shell" cardClassName="countdown-luxury-card">
         <div className="countdown-ornament-top">❦</div>
         <p className="countdown-eyebrow">Counting down to</p>
         <h3 className="countdown-title">Our Forever</h3>
@@ -132,8 +116,7 @@ export default function Countdown() {
         <div className="countdown-arrow" aria-hidden="true">
           <ArrowDown size={38} strokeWidth={1.5} />
         </div>
-      </div>
-    </section>
+    </LuxurySectionShell>
   );
 }
 

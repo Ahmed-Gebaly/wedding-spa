@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { ArrowDown, MessageCircle } from "lucide-react";
-import { assetPath } from "@/lib/asset-path";
+import LuxurySectionShell from "@/components/ui/luxury-section-shell";
 
 const qrItems = [
   {
@@ -19,22 +19,7 @@ const qrItems = [
 
 export default function Memories() {
   return (
-    <section className="content-shell memories-shell py-10 sm:py-16">
-      <div className="memories-luxury-card p-6 text-center sm:p-10">
-        <div className="memories-background-layer" aria-hidden="true">
-          <Image
-            src={assetPath("/cinematic.png")}
-            alt=""
-            fill
-            sizes="100vw"
-            className="memories-background-image"
-            priority={false}
-          />
-          <div className="memories-background-vignette" />
-          <div className="memories-paper-glow" />
-          <div className="memories-paper-grain" />
-        </div>
-
+    <LuxurySectionShell sectionClassName="memories-shell" cardClassName="memories-luxury-card">
         <div className="memories-ornament-top">❦</div>
         <h3 className="memories-title">
           <span>Share Your</span>
@@ -124,7 +109,6 @@ export default function Memories() {
         <div className="memories-arrow" aria-hidden="true">
           <ArrowDown size={28} strokeWidth={1.5} />
         </div>
-      </div>
-    </section>
+    </LuxurySectionShell>
   );
 }

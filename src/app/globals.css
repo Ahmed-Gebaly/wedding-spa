@@ -105,9 +105,60 @@ tr th {
 }
 
 .luxury-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   border-radius: var(--radius-card);
   border: 1px solid var(--border-soft);
   box-shadow: var(--shadow-soft);
+  background:
+    radial-gradient(circle at 8% 8%, rgba(255, 252, 246, 0.78), transparent 34%),
+    radial-gradient(circle at 90% 6%, rgba(253, 248, 238, 0.76), transparent 30%),
+    radial-gradient(circle at 12% 90%, rgba(255, 250, 241, 0.68), transparent 34%),
+    radial-gradient(circle at 90% 88%, rgba(253, 248, 238, 0.68), transparent 32%),
+    linear-gradient(180deg, var(--lux-surface-1) 0%, var(--lux-surface-2) 50%, var(--lux-surface-3) 100%);
+}
+
+.luxury-background-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.luxury-background-image {
+  object-fit: cover;
+  object-position: center center;
+  transform: scale(0.9);
+  animation: cinematic-ken-burns 22s ease-in-out infinite alternate;
+}
+
+.luxury-background-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0) 55%, rgba(0, 0, 0, 0.07) 100%);
+}
+
+.luxury-paper-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 252, 246, 0.42),
+    rgba(255, 252, 246, 0.16) 45%,
+    transparent 72%
+  );
+}
+
+.luxury-paper-grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: radial-gradient(#bfae91 0.6px, transparent 0.6px);
+  background-size: 2.4px 2.4px;
 }
 
 .luxury-action {

@@ -1,7 +1,7 @@
-import Image from "next/image";
 import { ArrowDown, MapPin, Navigation } from "lucide-react";
 import { weddingContent } from "@/content/wedding";
-import { assetPath } from "@/lib/asset-path";
+import LuxuryActionLink from "@/components/ui/luxury-action-link";
+import LuxurySectionShell from "@/components/ui/luxury-section-shell";
 
 export default function Location() {
   const mapSrc = weddingContent.mapEmbedSrc;
@@ -10,22 +10,7 @@ export default function Location() {
     : weddingContent.mapQuery;
 
   return (
-    <section className="content-shell location-shell py-10 sm:py-16">
-      <div className="location-luxury-card p-6 text-center sm:p-10">
-        <div className="location-background-layer" aria-hidden="true">
-          <Image
-            src={assetPath("/cinematic.png")}
-            alt=""
-            fill
-            sizes="100vw"
-            className="location-background-image"
-            priority={false}
-          />
-          <div className="location-background-vignette" />
-          <div className="location-paper-glow" />
-          <div className="location-paper-grain" />
-        </div>
-
+    <LuxurySectionShell sectionClassName="location-shell" cardClassName="location-luxury-card">
         <div className="location-ornament-top">❦</div>
         <h3 className="location-title">Location</h3>
 
@@ -67,7 +52,7 @@ export default function Location() {
         </p>
 
         <div className="location-cta-wrap">
-          <a
+          <LuxuryActionLink
             href={weddingContent.mapLink}
             target="_blank"
             rel="noopener noreferrer"
@@ -75,7 +60,7 @@ export default function Location() {
           >
             <Navigation size={20} strokeWidth={1.8} />
             Get Directions
-          </a>
+          </LuxuryActionLink>
         </div>
 
         <p className="location-note">
@@ -89,7 +74,6 @@ export default function Location() {
         <div className="location-arrow" aria-hidden="true">
           <ArrowDown size={28} strokeWidth={1.5} />
         </div>
-      </div>
-    </section>
+    </LuxurySectionShell>
   );
 }

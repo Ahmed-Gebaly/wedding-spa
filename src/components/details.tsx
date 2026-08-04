@@ -1,7 +1,7 @@
-import Image from "next/image";
 import { CalendarDays, Clock3, MapPin, CalendarPlus } from "lucide-react";
 import { weddingContent } from "@/content/wedding";
-import { assetPath } from "@/lib/asset-path";
+import LuxuryActionLink from "@/components/ui/luxury-action-link";
+import LuxurySectionShell from "@/components/ui/luxury-section-shell";
 
 function buildGoogleCalendarUrl() {
   const start = new Date(weddingContent.eventIsoDateTime);
@@ -36,22 +36,7 @@ export default function Details() {
   const venueSub = weddingContent.mapQuery ? `${weddingContent.mapQuery}, Egypt` : "Egypt";
 
   return (
-    <section className="content-shell details-shell py-10 sm:py-16">
-      <div className="details-luxury-card p-6 text-center sm:p-10">
-        <div className="details-background-layer" aria-hidden="true">
-          <Image
-            src={assetPath("/cinematic.png")}
-            alt=""
-            fill
-            sizes="100vw"
-            className="details-background-image"
-            priority={false}
-          />
-          <div className="details-background-vignette" />
-          <div className="details-paper-glow" />
-          <div className="details-paper-grain" />
-        </div>
-
+    <LuxurySectionShell sectionClassName="details-shell" cardClassName="details-luxury-card">
         <div className="details-ornament-top">❦</div>
         <h3 className="details-title">Wedding Details</h3>
 
@@ -112,7 +97,7 @@ export default function Details() {
           <span />
         </div>
 
-        <a
+        <LuxuryActionLink
           href={buildGoogleCalendarUrl()}
           target="_blank"
           rel="noopener noreferrer"
@@ -120,7 +105,7 @@ export default function Details() {
         >
           <CalendarPlus size={24} strokeWidth={1.8} />
           <span>Add to Calendar</span>
-        </a>
+        </LuxuryActionLink>
 
         <p className="details-note">
           Add the event to your calendar
@@ -130,7 +115,6 @@ export default function Details() {
 
         <p className="details-love">♥</p>
         <div className="details-ornament-bottom">❦</div>
-      </div>
-    </section>
+    </LuxurySectionShell>
   );
 }

@@ -1,25 +1,9 @@
 import { ArrowDown } from "lucide-react";
-import Image from "next/image";
-import { assetPath } from "@/lib/asset-path";
+import LuxurySectionShell from "@/components/ui/luxury-section-shell";
 
 export default function ThankYou() {
   return (
-    <section className="content-shell thank-you-shell py-10 pb-20 sm:py-16 sm:pb-28">
-      <div className="thank-you-luxury-card p-6 text-center sm:p-10">
-        <div className="thank-you-background-layer" aria-hidden="true">
-          <Image
-            src={assetPath("/cinematic.png")}
-            alt=""
-            fill
-            sizes="100vw"
-            className="thank-you-background-image"
-            priority={false}
-          />
-          <div className="thank-you-background-vignette" />
-          <div className="thank-you-paper-glow" />
-          <div className="thank-you-paper-grain" />
-        </div>
-
+    <LuxurySectionShell sectionClassName="thank-you-shell pb-20 sm:pb-28" cardClassName="thank-you-luxury-card">
         <div className="thank-you-ornament-top">❦</div>
 
         <p className="thank-you-eyebrow">Thank You</p>
@@ -48,7 +32,6 @@ export default function ThankYou() {
         <div className="thank-you-arrow" aria-hidden="true">
           <ArrowDown size={28} strokeWidth={1.5} />
         </div>
-      </div>
-    </section>
+    </LuxurySectionShell>
   );
 }

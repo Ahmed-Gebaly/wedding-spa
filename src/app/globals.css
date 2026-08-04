@@ -107,3 +107,203 @@ tr th {
     transform: translateY(0);
   }
 }
+
+@keyframes cinematic-dust-fall {
+  0% {
+    transform: translate3d(0, -12vh, 0) rotate(0deg);
+    opacity: 0;
+  }
+
+  8% {
+    opacity: inherit;
+  }
+
+  92% {
+    opacity: inherit;
+  }
+
+  100% {
+    transform: translate3d(var(--dust-drift), 114svh, 0) rotate(26deg);
+    opacity: 0;
+  }
+}
+
+@keyframes cinematic-twinkle {
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes cinematic-bokeh-drift {
+  0% {
+    transform: translate3d(-6px, -4px, 0);
+  }
+
+  100% {
+    transform: translate3d(8px, 6px, 0);
+  }
+}
+
+@keyframes cinematic-ken-burns {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1.03);
+  }
+}
+
+.cinematic-layout {
+  --cinematic-upshift: 0px;
+  --cinematic-bismillah-width: 200px;
+  --cinematic-arabic-size: 28px;
+  --cinematic-reference-size: 18px;
+  --cinematic-english-size: 20px;
+  --cinematic-english-reference-size: 16px;
+  --cinematic-divider-width: 300px;
+  --cinematic-arrow-size: 22px;
+  --cinematic-gap-bismillah-verse: 40px;
+  --cinematic-gap-verse-reference: 24px;
+  --cinematic-gap-reference-divider: 28px;
+  --cinematic-gap-divider-english: 52px;
+  --cinematic-gap-english-reference: 20px;
+  --cinematic-gap-reference-sparkle: 40px;
+  --cinematic-gap-sparkle-arrow: 24px;
+}
+
+.cinematic-content {
+  transform: translateY(calc(var(--cinematic-upshift) * -1));
+}
+
+.cinematic-section {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: auto;
+  padding-top: 90px;
+  padding-bottom: 90px;
+}
+
+.background-layer {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  overflow: hidden;
+}
+
+.background-image {
+  object-fit: cover;
+  object-position: center center;
+  transform: scale(1);
+  animation: cinematic-ken-burns 20s ease-in-out infinite alternate;
+}
+
+.paper-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 252, 246, 0.45),
+    rgba(255, 252, 246, 0.18) 45%,
+    transparent 72%
+  );
+}
+
+.background-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0) 55%,
+    rgba(0, 0, 0, 0.08) 100%
+  );
+}
+
+.paper-grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: radial-gradient(#bfae91 0.6px, transparent 0.6px);
+  background-size: 2.4px 2.4px;
+}
+
+.particles-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.content-layer {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 390px;
+  margin: 0 auto;
+  padding-inline: 24px;
+}
+
+.cinematic-bismillah {
+  margin-top: 20px;
+  width: var(--cinematic-bismillah-width);
+  margin-bottom: var(--cinematic-gap-bismillah-verse);
+}
+
+.cinematic-verse-line {
+  font-size: var(--cinematic-arabic-size);
+  line-height: 2.15;
+  letter-spacing: 0;
+}
+
+.cinematic-verse-line + .cinematic-verse-line {
+  margin-top: 0;
+}
+
+.cinematic-verse-reference {
+  margin-top: var(--cinematic-gap-verse-reference);
+  font-size: var(--cinematic-reference-size);
+}
+
+.cinematic-divider {
+  margin-top: var(--cinematic-gap-reference-divider);
+  width: var(--cinematic-divider-width);
+  opacity: 0.95;
+}
+
+.cinematic-translation {
+  margin-top: var(--cinematic-gap-divider-english);
+  max-width: 340px;
+  font-size: var(--cinematic-english-size);
+  line-height: 1.9;
+  color: #4e463d;
+}
+
+.cinematic-english-reference {
+  margin-top: var(--cinematic-gap-english-reference);
+  font-size: var(--cinematic-english-reference-size);
+  letter-spacing: 0.08em;
+  color: #8c7c63;
+}
+
+.cinematic-sparkle {
+  margin-top: var(--cinematic-gap-reference-sparkle);
+}
+
+.cinematic-arrow {
+  margin-top: var(--cinematic-gap-sparkle-arrow);
+  font-size: var(--cinematic-arrow-size);
+  opacity: 0.55;
+}

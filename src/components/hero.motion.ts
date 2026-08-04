@@ -21,7 +21,7 @@ export const heroNamesVariants: Variants = {
   animate: {
     opacity: 1,
     y: 0,
-    transition: { duration: HERO_ANIMATION.namesDuration, ease: "easeOut", delay: 0.9 },
+    transition: { duration: HERO_ANIMATION.namesDuration, ease: "easeOut", delay: 0.3 },
   },
 };
 
@@ -30,7 +30,7 @@ export const heroDateVariants: Variants = {
   animate: {
     opacity: 1,
     y: 0,
-    transition: { duration: 1.2, ease: "easeOut", delay: 0.9 + HERO_ANIMATION.dateDelay },
+    transition: { duration: 1.15, ease: "easeOut", delay: 0.6 },
   },
 };
 
@@ -39,7 +39,7 @@ export const heroBeginVariants: Variants = {
   animate: {
     opacity: 1,
     y: 0,
-    transition: { duration: 1.1, ease: "easeOut", delay: 0.9 + HERO_ANIMATION.beginDelay },
+    transition: { duration: 1.05, ease: "easeOut", delay: 0.9 },
   },
 };
 

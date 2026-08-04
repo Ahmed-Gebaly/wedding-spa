@@ -17,7 +17,6 @@ export default function Hero({ onBeginStory }: HeroProps) {
     .map((name) => name.trim())
     .filter(Boolean);
   const reducedMotion = useReducedMotion();
-  const ctaText = "BEGIN OUR STORY";
   const touchStartYRef = useRef<number | null>(null);
   const hasTriggeredRef = useRef(false);
 
@@ -54,7 +53,8 @@ export default function Hero({ onBeginStory }: HeroProps) {
     }
   };
 
-  const formattedDate = weddingContent.eventDisplayDate.replace(/\//g, " \u00b7 ");
+  const weekdayLabel = "FRIDAY";
+  const fullDateLabel = "07 AUGUST 2026";
 
   return (
     <section
@@ -114,50 +114,60 @@ export default function Hero({ onBeginStory }: HeroProps) {
         />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_34%,rgba(255,255,255,0.1)_0%,rgba(255,255,255,0)_46%),linear-gradient(180deg,rgba(0,0,0,0.04)_0%,rgba(0,0,0,0.22)_58%,rgba(0,0,0,0.52)_100%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0)_42%,rgba(0,0,0,0.24)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.28)_0%,rgba(0,0,0,0.12)_18%,rgba(0,0,0,0)_42%)]" />
       </motion.div>
 
-      <div className="relative z-10 flex min-h-[100svh] flex-col px-6 pt-7 pb-6 sm:min-h-screen sm:px-10 sm:pt-8 sm:pb-8">
-        <motion.div
-          className="mt-auto mb-[6.2rem] text-center text-white sm:mb-32"
-          variants={heroNamesVariants}
-          initial={reducedMotion ? false : "initial"}
-          animate={reducedMotion ? undefined : "animate"}
-        >
-          <p className="aref-ruqaa-bold text-[5.2rem] leading-[0.82] [text-shadow:0_3px_18px_rgba(0,0,0,0.28)] sm:text-[6.5rem]" dir="rtl">
-            {firstName}
-          </p>
-          <p className="my-1 text-[1.1rem] font-medium text-[rgb(226,196,150)]">&amp;</p>
-          <p className="aref-ruqaa-bold text-[5.2rem] leading-[0.82] [text-shadow:0_3px_18px_rgba(0,0,0,0.28)] sm:text-[6.5rem]" dir="rtl">
-            {secondName}
-          </p>
-          <motion.p
-            className="mt-8 text-[0.68rem] tracking-[0.34em] text-[rgb(230,202,160)]"
-            variants={heroDateVariants}
+      <div className="relative z-10 min-h-[100svh] px-6 pt-7 sm:flex sm:min-h-screen sm:flex-col sm:px-10 sm:pt-8 sm:pb-8">
+        <div className="absolute inset-x-0 bottom-[max(1.1rem,env(safe-area-inset-bottom))] flex flex-col items-center gap-2 px-6 text-center sm:bottom-7">
+          <motion.div
+            className="-translate-y-6 text-white sm:-translate-y-0"
+            variants={heroNamesVariants}
             initial={reducedMotion ? false : "initial"}
             animate={reducedMotion ? undefined : "animate"}
           >
-            {formattedDate}
-          </motion.p>
-        </motion.div>
+            <p className="aref-ruqaa-bold text-[6.15rem] leading-[0.82] text-white sm:text-[6.9rem]" dir="rtl">
+              {firstName}
+            </p>
+            <p className="mt-5 aref-ruqaa-bold text-[6.15rem] leading-[0.82] text-white sm:text-[6.9rem]" dir="rtl">
+              {secondName}
+            </p>
+            <motion.p
+              className="mt-2 font-['Cormorant_Garamond'] text-[0.72rem] tracking-[0.45em] text-[#E7D7B0]"
+              variants={heroDateVariants}
+              initial={reducedMotion ? false : "initial"}
+              animate={reducedMotion ? undefined : "animate"}
+            >
+              {weekdayLabel}
+            </motion.p>
+            <motion.p
+              className="mt-1 font-['Cormorant_Garamond'] text-[1.2rem] tracking-[0.18em] text-[#E7D7B0]"
+              variants={heroDateVariants}
+              initial={reducedMotion ? false : "initial"}
+              animate={reducedMotion ? undefined : "animate"}
+            >
+              {fullDateLabel}
+            </motion.p>
+          </motion.div>
 
-        <motion.button
-          type="button"
-          onClick={triggerBeginStory}
-          aria-label="Begin Our Story"
-          className="absolute bottom-6 left-1/2 min-h-11 min-w-[15rem] -translate-x-1/2 rounded-[999px] border border-[rgba(255,255,255,0.25)] bg-[rgba(255,255,255,0.08)] px-[42px] py-[18px] text-center text-white/95 shadow-[0_10px_40px_rgba(0,0,0,0.18)] backdrop-blur-[20px] transition-colors hover:bg-[rgba(255,255,255,0.14)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
-          variants={heroBeginVariants}
-          initial={reducedMotion ? false : "initial"}
-          animate={reducedMotion ? undefined : "animate"}
-        >
-          <p className="text-[0.83rem] tracking-[0.28em]">{ctaText}</p>
-          <motion.span
-            className="mx-auto mt-1.5 block text-base"
-            variants={reducedMotion ? undefined : beginArrowVariants}
+          <motion.button
+            type="button"
+            onClick={triggerBeginStory}
+            aria-label="Begin Our Story"
+            className="bg-transparent p-0 text-center text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+            variants={heroBeginVariants}
+            initial={reducedMotion ? false : "initial"}
             animate={reducedMotion ? undefined : "animate"}
           >
-            ↓
-          </motion.span>
-        </motion.button>
+            <span className="block text-[0.74rem] font-medium tracking-[0.35em] text-white/80">BEGIN OUR STORY</span>
+            <motion.span
+              className="mx-auto mt-2 block text-[0.98rem] font-extralight text-white/70"
+              variants={reducedMotion ? undefined : beginArrowVariants}
+              animate={reducedMotion ? undefined : "animate"}
+            >
+              ↓
+            </motion.span>
+          </motion.button>
+        </div>
       </div>
     </section>
   );

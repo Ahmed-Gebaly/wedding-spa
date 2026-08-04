@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 420 24"
+     width="420"
+     height="24"
+     fill="none">
+
+    <defs>
+        <linearGradient id="goldGradient"
+                        x1="0"
+                        y1="0"
+                        x2="420"
+                        y2="0"
+                        gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#C8A86B"/>
+            <stop offset="50%" stop-color="#E6D2A2"/>
+            <stop offset="100%" stop-color="#C8A86B"/>
+        </linearGradient>
+    </defs>
+
+    <line
+        x1="20"
+        y1="12"
+        x2="175"
+        y2="12"
+        stroke="url(#goldGradient)"
+        stroke-width="1.2"
+        stroke-linecap="round"/>
+
+    <circle
+        cx="182"
+        cy="12"
+        r="2"
+        fill="#D8C08F"/>
+
+    <g transform="translate(210 12)">
+        <circle r="1.8" fill="#D8C08F"/>
+
+        <path
+            d="M0-8 C2-5 2-2 0 0 C-2-2 -2-5 0-8Z"
+            fill="#D8C08F"/>
+
+        <path
+            d="M8 0 C5 2 2 2 0 0 C2-2 5-2 8 0Z"
+            fill="#D8C08F"/>
+
+        <path
+            d="M0 8 C-2 5 -2 2 0 0 C2 2 2 5 0 8Z"
+            fill="#D8C08F"/>
+
+        <path
+            d="M-8 0 C-5-2 -2-2 0 0 C-2 2 -5 2 -8 0Z"
+            fill="#D8C08F"/>
+    </g>
+
+    <circle
+        cx="238"
+        cy="12"
+        r="2"
+        fill="#D8C08F"/>
+
+    <line
+        x1="245"
+        y1="12"
+        x2="400"
+        y2="12"
+        stroke="url(#goldGradient)"
+        stroke-width="1.2"
+        stroke-linecap="round"/>
+
+</svg>

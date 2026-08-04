@@ -4,7 +4,11 @@ import { useEffect, useRef, useState } from "react";
 import { Volume2, VolumeX } from "lucide-react";
 import { assetPath } from "@/lib/asset-path";
 
-export default function MusicPlayer() {
+type MusicPlayerProps = {
+  visible?: boolean;
+};
+
+export default function MusicPlayer({ visible = true }: MusicPlayerProps) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [muted, setMuted] = useState(false);
   const [audioAvailable, setAudioAvailable] = useState(true);
@@ -43,12 +47,12 @@ export default function MusicPlayer() {
           setAudioAvailable(false);
         }}
       />
-      {audioAvailable ? (
+      {audioAvailable && visible ? (
         <button
           type="button"
           aria-label={muted ? "Unmute wedding music" : "Mute wedding music"}
           onClick={toggleMute}
-          className="fixed bottom-6 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-[var(--wine)] text-white shadow-lg transition hover:scale-105"
+          className="fixed right-5 bottom-5 z-[100] flex h-[52px] w-[52px] items-center justify-center rounded-full bg-[var(--wine)]/88 text-white shadow-[0_10px_24px_rgba(34,20,18,0.28)] backdrop-blur-sm transition duration-250 hover:scale-105 active:scale-95"
         >
           {muted ? <VolumeX size={20} /> : <Volume2 size={20} />}
         </button>

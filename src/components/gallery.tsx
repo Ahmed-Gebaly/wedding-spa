@@ -1,10 +1,11 @@
 import Image from "next/image";
+import { assetPath } from "@/lib/asset-path";
 
 const photos = [
-  "/images/photo-01.svg",
-  "/images/photo-02.svg",
-  "/images/photo-03.svg",
-  "/images/photo-04.svg",
+  assetPath("/images/photo-01.svg"),
+  assetPath("/images/photo-02.svg"),
+  assetPath("/images/photo-03.svg"),
+  assetPath("/images/photo-04.svg"),
 ];
 
 export default function Gallery() {

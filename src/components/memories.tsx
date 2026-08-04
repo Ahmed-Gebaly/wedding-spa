@@ -1,16 +1,17 @@
 import Image from "next/image";
+import { assetPath } from "@/lib/asset-path";
 
 const qrItems = [
   {
     title: "Share a Voice Note",
     description: "Send us a blessing or memory as a WhatsApp audio message.",
-    qr: "/qr/voice-note.svg",
+    qr: assetPath("/qr/voice-note.svg"),
     href: "https://wa.me/201000000000",
   },
   {
     title: "Share Your Photos",
     description: "Drop your photos from the night directly to our WhatsApp.",
-    qr: "/qr/photo-drop.svg",
+    qr: assetPath("/qr/photo-drop.svg"),
     href: "https://wa.me/201000000000",
   },
 ];

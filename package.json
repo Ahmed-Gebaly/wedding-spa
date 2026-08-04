@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
+    "build:pages": "set NEXT_PUBLIC_BASE_PATH=/wedding-spa&& next build",
     "start": "next start",
     "lint": "eslint . --cache --cache-location .next/cache/eslint/"
   },

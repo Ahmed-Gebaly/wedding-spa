@@ -1,4 +1,6 @@
-export const HERO_IMAGE_SRC = "/images/photo-hero.png";
+import { assetPath } from "@/lib/asset-path";
+
+export const HERO_IMAGE_SRC = assetPath("/images/photo-hero.png");
 
 export const HERO_ANIMATION = {
   imageScaleFrom: 1.05,

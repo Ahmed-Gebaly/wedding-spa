@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { assetPath } from "@/lib/asset-path";
 
 export const metadata: Metadata = {
   title: "أحمد و سلمي | Wedding Invitation",
@@ -29,7 +30,7 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;700&display=swap"
           rel="stylesheet"
         />
-        <link rel="preload" as="image" href="/images/hero-bg.svg" />
+        <link rel="preload" as="image" href={assetPath("/images/hero-bg.svg")} />
       </head>
       <body className="antialiased" suppressHydrationWarning>
         {children}

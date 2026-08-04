@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Volume2, VolumeX } from "lucide-react";
+import { assetPath } from "@/lib/asset-path";
 
 export default function MusicPlayer() {
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -34,7 +35,7 @@ export default function MusicPlayer() {
       <audio
         id="wedding-audio"
         ref={audioRef}
-        src="/music/wedding-theme.mp3"
+        src={assetPath("/music/wedding-theme.mp3")}
         loop
         preload="auto"
         muted

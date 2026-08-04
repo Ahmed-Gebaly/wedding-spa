@@ -5,6 +5,11 @@ import nextTypescript from "eslint-config-next/typescript";
 export default defineConfig([
   ...nextVitals,
   ...nextTypescript,
+  {
+    rules: {
+      "@next/next/no-page-custom-font": "off",
+    },
+  },
   globalIgnores([
     "node_modules/**",
     ".next/**",

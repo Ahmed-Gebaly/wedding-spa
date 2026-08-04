@@ -52,7 +52,7 @@ export default function MusicPlayer({ visible = true }: MusicPlayerProps) {
           type="button"
           aria-label={muted ? "Unmute wedding music" : "Mute wedding music"}
           onClick={toggleMute}
-          className="fixed right-5 bottom-5 z-[100] flex h-[52px] w-[52px] items-center justify-center rounded-full bg-[var(--wine)]/88 text-white shadow-[0_10px_24px_rgba(34,20,18,0.28)] backdrop-blur-sm transition duration-250 hover:scale-105 active:scale-95"
+          className="fixed right-5 bottom-5 z-[100] flex h-[52px] w-[52px] items-center justify-center rounded-full bg-[var(--wine)]/88 text-white shadow-[0_10px_35px_rgba(0,0,0,0.18)] backdrop-blur-[12px] transition-all duration-300 hover:scale-[1.04] hover:shadow-[0_14px_40px_rgba(0,0,0,0.2)] active:scale-[0.96]"
         >
           {muted ? <VolumeX size={20} /> : <Volume2 size={20} />}
         </button>

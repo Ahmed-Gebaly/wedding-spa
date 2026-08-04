@@ -1,31 +1,93 @@
+import Image from "next/image";
+import { ArrowDown, MapPin, Navigation } from "lucide-react";
 import { weddingContent } from "@/content/wedding";
+import { assetPath } from "@/lib/asset-path";
 
 export default function Location() {
-  const mapSrc = `https://maps.google.com/maps?q=${encodeURIComponent(weddingContent.mapQuery)}&t=&z=5&ie=UTF8&iwloc=&output=embed`;
+  const mapSrc = weddingContent.mapEmbedSrc;
+  const venueCity = weddingContent.mapQuery.includes(",")
+    ? weddingContent.mapQuery.split(",").slice(1).join(",").trim()
+    : weddingContent.mapQuery;
 
   return (
-    <section className="content-shell py-10 sm:py-16">
-      <div className="section-card p-6 sm:p-10">
-        <h3 className="text-center text-4xl sm:text-5xl">Location</h3>
-        <p className="mt-4 text-center text-[var(--ink-soft)]">{weddingContent.venueDisplay}</p>
-        <div className="mt-6 overflow-hidden rounded-2xl border border-[var(--border-soft)]">
-          <iframe
-            title="Wedding venue location"
-            src={mapSrc}
-            className="h-[300px] w-full sm:h-[380px]"
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
+    <section className="content-shell location-shell py-10 sm:py-16">
+      <div className="location-luxury-card p-6 text-center sm:p-10">
+        <div className="location-background-layer" aria-hidden="true">
+          <Image
+            src={assetPath("/cinematic.png")}
+            alt=""
+            fill
+            sizes="100vw"
+            className="location-background-image"
+            priority={false}
           />
+          <div className="location-background-vignette" />
+          <div className="location-paper-glow" />
+          <div className="location-paper-grain" />
         </div>
-        <div className="mt-6 text-center">
+
+        <div className="location-ornament-top">❦</div>
+        <h3 className="location-title">Location</h3>
+
+        <div className="location-divider" aria-hidden="true">
+          <span />
+          <i>❈</i>
+          <span />
+        </div>
+
+        <div className="location-map-wrap">
+          <div className="location-map-frame">
+            <iframe
+              title="Wedding venue location"
+              src={mapSrc}
+              className="location-map"
+              loading="lazy"
+              referrerPolicy="strict-origin-when-cross-origin"
+            />
+          </div>
+        </div>
+
+        <div className="location-divider" aria-hidden="true">
+          <span />
+          <i>❈</i>
+          <span />
+        </div>
+
+        <h4 className="location-venue-title">{weddingContent.venueDisplay}</h4>
+
+        <div className="location-divider location-divider-tight" aria-hidden="true">
+          <span />
+          <i>❈</i>
+          <span />
+        </div>
+
+        <p className="location-city-line">
+          <MapPin size={20} strokeWidth={1.8} />
+          <span>{venueCity || "Port Said, Egypt"}</span>
+        </p>
+
+        <div className="location-cta-wrap">
           <a
             href={weddingContent.mapLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex rounded-full bg-[var(--wine)] px-6 py-3 text-sm uppercase tracking-[0.16em] text-white"
+            className="location-cta"
           >
-            Open in Google Maps
+            <Navigation size={20} strokeWidth={1.8} />
+            Get Directions
           </a>
+        </div>
+
+        <p className="location-note">
+          We look forward to
+          <br />
+          welcoming you.
+        </p>
+
+        <p className="location-love">♥</p>
+        <div className="location-ornament-bottom">❦</div>
+        <div className="location-arrow" aria-hidden="true">
+          <ArrowDown size={28} strokeWidth={1.5} />
         </div>
       </div>
     </section>

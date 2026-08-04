@@ -78,12 +78,12 @@ export default function InvitationExperience() {
             className="overflow-x-hidden"
           >
             <CinematicIntro onVisibilityChange={setIsCinematicVisible} />
+            <Countdown />
+            <Details />
+            <Location />
             <Story />
             <Gallery />
             <Invitation />
-            <Details />
-            <Countdown />
-            <Location />
             <Memories />
             <ThankYou />
           </motion.main>

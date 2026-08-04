@@ -57,10 +57,17 @@ const BOKEH = [
 ] as const;
 
 const verseLines = [
-  "وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُمْ مِنْ أَنْفُسِكُمْ أَزْوَاجًا",
-  "لِتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُمْ مَوَدَّةً وَرَحْمَةً",
-  "إِنَّ فِي ذَٰلِكَ لَآيَاتٍ",
-  "لِقَوْمٍ يَتَفَكَّرُونَ",
+  "وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُمْ",
+  "مِنْ أَنْفُسِكُمْ أَزْوَاجًا لِتَسْكُنُوا إِلَيْهَا",
+  "وَجَعَلَ بَيْنَكُمْ مَوَدَّةً وَرَحْمَةً",
+  "إِنَّ فِي ذَٰلِكَ لَآيَاتٍ لِقَوْمٍ يَتَفَكَّرُونَ",
+] as const;
+
+const translationLines = [
+  "And among His signs is that He created for you mates",
+  "from among yourselves that you may find tranquility",
+  "in them; and He placed between you affection and mercy.",
+  "Indeed in that are signs for a people who reflect.",
 ] as const;
 
 const fadeUp = {
@@ -71,7 +78,7 @@ const fadeUp = {
 export default function CinematicIntro({ onComplete, onVisibilityChange }: CinematicIntroProps) {
   const reducedMotion = useReducedMotion();
   const didCompleteRef = useRef(false);
-  const sectionRef = useRef<HTMLElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
 
   const particleStyles = useMemo(
     () =>
@@ -139,35 +146,37 @@ export default function CinematicIntro({ onComplete, onVisibilityChange }: Cinem
   };
 
   return (
-    <section
-      ref={sectionRef}
-      className="cinematic-layout cinematic-section text-center text-[#2B2B2B]"
-      onClick={onComplete ? complete : undefined}
-      onTouchStart={onComplete ? complete : undefined}
-      onWheel={handleWheel}
-    >
-      <div className="background-layer" aria-hidden="true">
-        <Image
-          src={assetPath("/cinematic.png")}
-          alt=""
-          fill
-          sizes="100vw"
-          className="background-image"
-          priority={false}
-        />
-        <div className="background-vignette" />
-        <div className="paper-glow" />
-        <div className="paper-grain" />
-      </div>
+    <section className="content-shell cinematic-shell py-10 sm:py-16">
+      <div
+        ref={sectionRef}
+        className="cinematic-card cinematic-layout cinematic-section text-center text-[#2B2B2B]"
+        onClick={onComplete ? complete : undefined}
+        onTouchStart={onComplete ? complete : undefined}
+        onWheel={handleWheel}
+      >
+        <div className="background-layer" aria-hidden="true">
+          <Image
+            src={assetPath("/cinematic.png")}
+            alt=""
+            fill
+            sizes="100vw"
+            className="background-image"
+            priority={false}
+          />
+          <div className="background-vignette" />
+          <div className="paper-glow" />
+          <div className="paper-grain" />
+          <div className="bottom-left-corner-soften" />
+        </div>
 
-      <div className="particles-layer" aria-hidden="true">
-        <motion.div
-          className="pointer-events-none absolute inset-0"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ opacity: { duration: reducedMotion ? 0.2 : 0.7, ease: "easeOut" } }}
-        >
+        <div className="particles-layer" aria-hidden="true">
+          <motion.div
+            className="pointer-events-none absolute inset-0"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ opacity: { duration: reducedMotion ? 0.2 : 0.7, ease: "easeOut" } }}
+          >
           {!reducedMotion
             ? DUST_PARTICLES.map((particle, index) => (
                 <span
@@ -227,30 +236,30 @@ export default function CinematicIntro({ onComplete, onVisibilityChange }: Cinem
                 />
               ))
             : null}
-        </motion.div>
-      </div>
+          </motion.div>
+        </div>
 
-      <div className="content-layer">
-        <div className="cinematic-content relative w-full">
-        <motion.div
-          variants={fadeUp}
-          initial="initial"
-          whileInView="inView"
-          viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: reducedMotion ? 0.2 : 0.8, delay: reducedMotion ? 0 : 0.5, ease: "easeOut" }}
-          className="cinematic-bismillah mx-auto"
-        >
-          <Image
-            src={assetPath("/assets/Bismillah.svg")}
-            alt="Bismillah calligraphy"
-            width={180}
-            height={70}
-            className="h-auto w-full"
-            priority={false}
-          />
-        </motion.div>
+        <div className="content-layer">
+          <div className="cinematic-content relative w-full">
+            <motion.div
+              variants={fadeUp}
+              initial="initial"
+              whileInView="inView"
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: reducedMotion ? 0.2 : 0.8, delay: reducedMotion ? 0 : 0.5, ease: "easeOut" }}
+              className="cinematic-bismillah mx-auto"
+            >
+              <Image
+                src={assetPath("/assets/Bismillah.svg")}
+                alt="Bismillah calligraphy"
+                width={180}
+                height={70}
+                className="h-auto w-full"
+                priority={false}
+              />
+            </motion.div>
 
-        <blockquote className="mx-auto max-w-[390px] text-[#2B2B2B]" dir="rtl">
+        <blockquote className="cinematic-verse-block mx-auto max-w-[860px] text-[#2B2B2B]" dir="rtl">
           {verseLines.map((line, index) => (
             <motion.p
               key={line}
@@ -282,9 +291,9 @@ export default function CinematicIntro({ onComplete, onVisibilityChange }: Cinem
           whileInView="inView"
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: reducedMotion ? 0.2 : 0.8, delay: reducedMotion ? 0.2 : 3.85, ease: "easeOut" }}
-          className="cinematic-divider mx-auto max-w-full"
+          className="cinematic-divider cinematic-divider-middle mx-auto"
         >
-          <Image src={assetPath("/assets/divider-gold.svg")} alt="Gold divider" width={300} height={24} className="h-auto w-full" />
+          <Image src={assetPath("/assets/divider-gold.svg")} alt="Gold divider" width={240} height={24} className="cinematic-divider-image h-auto w-full" />
         </motion.div>
 
         <motion.blockquote
@@ -293,9 +302,13 @@ export default function CinematicIntro({ onComplete, onVisibilityChange }: Cinem
           whileInView="inView"
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: reducedMotion ? 0.2 : 0.8, delay: reducedMotion ? 0.25 : 4.25, ease: "easeOut" }}
-          className="cinematic-translation mx-auto font-['Cormorant_Garamond','Bodoni_Moda','Didot','Playfair_Display',serif] font-normal italic"
+          className="cinematic-translation mx-auto font-['Cormorant_Garamond','Bodoni_Moda','Didot','Playfair_Display',serif]"
         >
-          And among His signs is that He created for you mates from among yourselves that you may find tranquility in them; and He placed between you affection and mercy. Indeed in that are signs for a people who reflect.
+          {translationLines.map((line) => (
+            <span key={line} className="block cinematic-translation-line">
+              {line}
+            </span>
+          ))}
         </motion.blockquote>
 
         <motion.p
@@ -306,7 +319,9 @@ export default function CinematicIntro({ onComplete, onVisibilityChange }: Cinem
           transition={{ duration: reducedMotion ? 0.2 : 0.8, delay: reducedMotion ? 0.3 : 4.7, ease: "easeOut" }}
           className="cinematic-english-reference font-['Cormorant_Garamond','Bodoni_Moda','Didot','Playfair_Display',serif]"
         >
-          QUR&apos;AN 30:21
+          <span className="cinematic-ref-bracket">﴾</span>
+          <span className="cinematic-ref-text">QUR&apos;AN 30:21</span>
+          <span className="cinematic-ref-bracket">﴿</span>
         </motion.p>
 
         <motion.div
@@ -314,40 +329,12 @@ export default function CinematicIntro({ onComplete, onVisibilityChange }: Cinem
           initial="initial"
           whileInView="inView"
           viewport={{ once: true, amount: 0.4 }}
-          transition={
-            reducedMotion
-                ? { duration: 0.2, delay: 0.35, ease: "easeOut" }
-              : {
-                  opacity: { duration: 0.8, delay: 5.1, ease: "easeOut" },
-                  y: { duration: 4, ease: "easeInOut", repeat: Infinity },
-                }
-          }
-          className="cinematic-sparkle mx-auto w-3 opacity-45"
-          animate={reducedMotion ? undefined : { y: [0, -3, 0] }}
-          style={{ willChange: reducedMotion ? undefined : "transform, opacity" }}
+          transition={{ duration: reducedMotion ? 0.2 : 0.8, delay: reducedMotion ? 0.35 : 5.1, ease: "easeOut" }}
+          className="cinematic-divider cinematic-divider-bottom mx-auto"
         >
-          <Image src={assetPath("/assets/sparkle.svg")} alt="Sparkle ornament" width={12} height={12} className="h-auto w-full" />
+          <Image src={assetPath("/assets/divider-gold.svg")} alt="Gold divider" width={220} height={24} className="cinematic-divider-image h-auto w-full" />
         </motion.div>
-
-        <motion.p
-          variants={fadeUp}
-          initial="initial"
-          whileInView="inView"
-          viewport={{ once: true, amount: 0.4 }}
-          transition={
-            reducedMotion
-                ? { duration: 0.2, delay: 0.4, ease: "easeOut" }
-              : {
-                  opacity: { duration: 0.8, delay: 5.45, ease: "easeOut" },
-                  y: { duration: 2, ease: "easeInOut", repeat: Infinity },
-                }
-          }
-          className="cinematic-arrow text-[#2B2B2B]"
-          animate={reducedMotion ? undefined : { y: [0, 8, 0] }}
-          style={{ willChange: reducedMotion ? undefined : "transform, opacity" }}
-        >
-          ↓
-        </motion.p>
+          </div>
         </div>
       </div>
     </section>

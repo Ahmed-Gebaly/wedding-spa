@@ -1,7 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { ArrowDown, CalendarDays } from "lucide-react";
+import Image from "next/image";
 import { weddingContent } from "@/content/wedding";
+import { assetPath } from "@/lib/asset-path";
 
 type TimeLeft = {
   days: number;
@@ -31,6 +34,12 @@ function getRemainingTime(): TimeLeft | null {
 export default function Countdown() {
   const [time, setTime] = useState<TimeLeft | null | undefined>(undefined);
 
+  const eventDateObject = new Date(weddingContent.eventIsoDateTime);
+  const weekday = eventDateObject.toLocaleDateString("en-US", { weekday: "long" }).toUpperCase();
+  const day = eventDateObject.toLocaleDateString("en-US", { day: "2-digit" });
+  const month = eventDateObject.toLocaleDateString("en-US", { month: "long" }).toUpperCase();
+  const year = eventDateObject.toLocaleDateString("en-US", { year: "numeric" });
+
   useEffect(() => {
     const tick = () => {
       setTime(getRemainingTime());
@@ -49,21 +58,80 @@ export default function Countdown() {
   }, []);
 
   return (
-    <section className="content-shell py-10 sm:py-16">
-      <div className="section-card p-6 text-center sm:p-10">
-        <h3 className="text-4xl sm:text-5xl">Countdown</h3>
+    <section className="content-shell countdown-shell py-10 sm:py-16">
+      <div className="countdown-luxury-card p-6 text-center sm:p-10">
+        <div className="countdown-background-layer" aria-hidden="true">
+          <Image
+            src={assetPath("/cinematic.png")}
+            alt=""
+            fill
+            sizes="100vw"
+            className="countdown-background-image"
+            priority={false}
+          />
+          <div className="countdown-background-vignette" />
+          <div className="countdown-paper-glow" />
+          <div className="countdown-paper-grain" />
+        </div>
+
+        <div className="countdown-ornament-top">❦</div>
+        <p className="countdown-eyebrow">Counting down to</p>
+        <h3 className="countdown-title">Our Forever</h3>
+
+        <div className="countdown-divider" aria-hidden="true">
+          <span />
+          <i>❈</i>
+          <span />
+        </div>
+
+        <div className="countdown-date-wrap">
+          <p className="countdown-weekday">{weekday}</p>
+          <p className="countdown-date-line">
+            {day} {month} {year}
+          </p>
+          <p className="countdown-time-line">• {weddingContent.eventTime.toUpperCase()} •</p>
+        </div>
+
+        <div className="countdown-divider countdown-divider-secondary" aria-hidden="true">
+          <span />
+          <i>❈</i>
+          <span />
+        </div>
+
         {time === undefined ? (
-          <p className="mt-6 text-3xl text-[var(--wine)]">Loading countdown...</p>
+          <p className="countdown-status">Loading countdown...</p>
         ) : !time ? (
-          <p className="mt-6 text-3xl text-[var(--wine)]">Today is the Day</p>
+          <p className="countdown-status">Today is the Day</p>
         ) : (
-          <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
+          <div className="countdown-grid mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
             <TimeBox label="Days" value={time.days} />
             <TimeBox label="Hours" value={time.hours} />
             <TimeBox label="Minutes" value={time.minutes} />
             <TimeBox label="Seconds" value={time.seconds} />
           </div>
         )}
+
+        <p className="countdown-love">♥</p>
+        <p className="countdown-note">
+          We can&apos;t wait
+          <br />
+          to celebrate with you.
+        </p>
+
+        <div className="countdown-divider countdown-divider-tertiary" aria-hidden="true">
+          <span />
+          <i>❈</i>
+          <span />
+        </div>
+
+        <div className="countdown-badge" role="status" aria-live="polite">
+          <CalendarDays size={20} />
+          <span>The celebration is getting closer.</span>
+        </div>
+
+        <div className="countdown-arrow" aria-hidden="true">
+          <ArrowDown size={38} strokeWidth={1.5} />
+        </div>
       </div>
     </section>
   );
@@ -71,9 +139,11 @@ export default function Countdown() {
 
 function TimeBox({ label, value }: { label: string; value: number }) {
   return (
-    <div className="rounded-2xl border border-[var(--border-soft)] bg-white/70 p-5">
-      <p className="text-3xl sm:text-4xl">{String(value).padStart(2, "0")}</p>
-      <p className="mt-1 text-xs uppercase tracking-[0.2em] text-[var(--ink-soft)]">{label}</p>
+    <div className="countdown-time-box rounded-2xl border border-[var(--border-soft)] bg-white/70 p-5">
+      <span className="countdown-box-ornament countdown-box-ornament-top">✧</span>
+      <p className="countdown-time-value">{String(value).padStart(2, "0")}</p>
+      <p className="countdown-time-label">{label}</p>
+      <span className="countdown-box-ornament countdown-box-ornament-bottom">✧</span>
     </div>
   );
 }

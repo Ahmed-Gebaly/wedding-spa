@@ -4,7 +4,9 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Countdown from "@/components/countdown";
 import CinematicIntro from "@/components/cinematic-intro";
+import DayTimeline from "@/components/day-timeline";
 import Details from "@/components/details";
+import GlobalFallingPetals from "@/components/global-falling-petals";
 import Hero from "@/components/hero";
 import Location from "@/components/location";
 import Memories from "@/components/memories";
@@ -16,48 +18,47 @@ const DURATION_LUXURY = 0.7;
 
 export default function InvitationExperience() {
   const [stage, setStage] = useState<"hero" | "invitation">("hero");
-  const [isCinematicVisible, setIsCinematicVisible] = useState(false);
 
   const handleOpenInvitation = () => {
     const audio = document.getElementById("wedding-audio") as HTMLAudioElement | null;
 
     if (audio) {
-      const shouldStayMuted = audio.muted;
+      // Opening the invitation is a direct user interaction, so we can
+      // safely start audio and fade up from silence.
+      audio.muted = false;
+      audio.volume = 0;
+
+      const fadeMs = 2500;
+      const start = performance.now();
+
+      const fadeIn = (time: number) => {
+        const progress = Math.min((time - start) / fadeMs, 1);
+        audio.volume = Math.max(0, Math.min(progress, 1));
+
+        if (progress < 1) {
+          requestAnimationFrame(fadeIn);
+        }
+      };
 
       if (audio.paused) {
-        audio.volume = shouldStayMuted ? 1 : 0;
-        void audio.play().catch(() => {
-          // User may not have provided audio file yet.
+        void audio.play().then(() => {
+          requestAnimationFrame(fadeIn);
+        }).catch(() => {
+          // Some browsers still block autoplay; user can use the music button.
         });
-      }
-
-      if (!shouldStayMuted) {
-        const start = performance.now();
-        const startVolume = Math.max(0, Math.min(audio.volume, 1));
-        const fadeMs = 2500;
-
-        const fadeIn = (time: number) => {
-          const progress = Math.min((time - start) / fadeMs, 1);
-          const nextVolume = startVolume + (1 - startVolume) * progress;
-          audio.volume = Math.max(0, Math.min(nextVolume, 1));
-
-          if (progress < 1) {
-            requestAnimationFrame(fadeIn);
-          }
-        };
-
+      } else {
         requestAnimationFrame(fadeIn);
       }
     }
 
     setStage("invitation");
-    setIsCinematicVisible(true);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
     <>
-      <MusicPlayer visible={stage === "hero" || isCinematicVisible} />
+      <GlobalFallingPetals />
+      <MusicPlayer visible />
       <AnimatePresence mode="wait">
         {stage === "hero" ? (
           <motion.div
@@ -77,10 +78,11 @@ export default function InvitationExperience() {
             transition={{ duration: DURATION_LUXURY, ease: EASE_LUXURY }}
             className="overflow-x-hidden"
           >
-            <CinematicIntro onVisibilityChange={setIsCinematicVisible} />
+            <CinematicIntro />
             <Countdown />
             <Details />
             <Location />
+            <DayTimeline />
             <Memories />
             <ThankYou />
           </motion.main>

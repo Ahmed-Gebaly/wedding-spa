@@ -118,21 +118,27 @@ export default function Hero({ onBeginStory }: HeroProps) {
       </motion.div>
 
       <div className="relative z-10 min-h-[100svh] px-6 pt-7 sm:flex sm:min-h-screen sm:flex-col sm:px-10 sm:pt-8 sm:pb-8">
-        <div className="absolute inset-x-0 bottom-[max(1.1rem,env(safe-area-inset-bottom))] flex flex-col items-center gap-2 px-6 text-center sm:bottom-7">
+        <div className="absolute inset-x-0 bottom-[max(1.55rem,env(safe-area-inset-bottom))] flex flex-col items-center gap-2 px-6 text-center sm:bottom-10">
           <motion.div
-            className="-translate-y-6 text-white sm:-translate-y-0"
+            className="-translate-y-2 sm:-translate-y-1"
             variants={heroNamesVariants}
             initial={reducedMotion ? false : "initial"}
             animate={reducedMotion ? undefined : "animate"}
           >
-            <p className="aref-ruqaa-bold text-[6.15rem] leading-[0.82] text-white sm:text-[6.9rem]" dir="rtl">
+            <p
+              className="mx-auto max-w-[320px] text-center font-['Cormorant_Garamond'] text-[1.28rem] italic font-normal leading-[1.9] tracking-[0.01em] text-[#4A4036]"
+              dir="rtl"
+            >
               {firstName}
             </p>
-            <p className="mt-5 aref-ruqaa-bold text-[6.15rem] leading-[0.82] text-white sm:text-[6.9rem]" dir="rtl">
+            <p
+              className="mx-auto max-w-[320px] text-center font-['Cormorant_Garamond'] text-[1.28rem] italic font-normal leading-[1.9] tracking-[0.01em] text-[#4A4036]"
+              dir="rtl"
+            >
               {secondName}
             </p>
             <motion.p
-              className="mt-2 font-['Cormorant_Garamond'] text-[0.72rem] tracking-[0.45em] text-[#E7D7B0]"
+              className="mt-8 font-['Cormorant_Garamond'] text-[0.74rem] tracking-[0.43em] text-[#E9D9B6]"
               variants={heroDateVariants}
               initial={reducedMotion ? false : "initial"}
               animate={reducedMotion ? undefined : "animate"}
@@ -140,7 +146,7 @@ export default function Hero({ onBeginStory }: HeroProps) {
               {weekdayLabel}
             </motion.p>
             <motion.p
-              className="mt-1 font-['Cormorant_Garamond'] text-[1.2rem] tracking-[0.18em] text-[#E7D7B0]"
+              className="mt-1 font-['Cormorant_Garamond'] text-[1.24rem] tracking-[0.2em] text-[#E9D9B6]"
               variants={heroDateVariants}
               initial={reducedMotion ? false : "initial"}
               animate={reducedMotion ? undefined : "animate"}

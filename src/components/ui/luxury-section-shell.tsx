@@ -18,8 +18,8 @@ export default function LuxurySectionShell({
   backgroundImageSizes = "(max-width: 768px) 100vw, 72rem",
 }: LuxurySectionShellProps) {
   return (
-    <section className={`content-shell py-10 sm:py-16 ${sectionClassName}`.trim()}>
-      <div className={`luxury-card relative overflow-hidden p-6 text-center sm:p-10 ${cardClassName}`.trim()}>
+    <section className={`content-shell py-8 sm:py-14 ${sectionClassName}`.trim()}>
+      <div className={`luxury-card relative overflow-hidden px-5 py-7 text-center sm:px-10 sm:py-10 ${cardClassName}`.trim()}>
         <div className="luxury-background-layer" aria-hidden="true">
           <Image
             src={assetPath(backgroundImagePath)}

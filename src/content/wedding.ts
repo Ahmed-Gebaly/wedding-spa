@@ -1,5 +1,5 @@
 export const weddingContent = {
-  coupleNames: "أحمد, سلمي",
+  coupleNames: "أحمد, سلمى",
   eventDisplayDate: "7/8/2026",
   eventIsoDateTime: "2026-08-07T20:00:00",
   eventTime: "8:00 PM",

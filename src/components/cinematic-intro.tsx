@@ -268,7 +268,7 @@ export default function CinematicIntro({ onComplete, onVisibilityChange }: Cinem
               whileInView="inView"
               viewport={{ once: true, amount: 0.4 }}
               transition={{ duration: reducedMotion ? 0.2 : 0.8, delay: reducedMotion ? 0.05 * (index + 1) : 1.2 + index * 0.35, ease: "easeOut" }}
-              className="cinematic-verse-line font-['Amiri_Quran','Amiri','Scheherazade_New',serif]"
+              className="cinematic-verse-line quran-text"
             >
               {line}
             </motion.p>
@@ -279,7 +279,7 @@ export default function CinematicIntro({ onComplete, onVisibilityChange }: Cinem
             whileInView="inView"
             viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: reducedMotion ? 0.2 : 0.8, delay: reducedMotion ? 0.15 : 3.45, ease: "easeOut" }}
-            className="cinematic-verse-reference block font-['Amiri_Quran','Amiri','Scheherazade_New',serif] not-italic text-[#A88F62]"
+            className="cinematic-verse-reference quran-text block not-italic text-[#A88F62]"
           >
             ﴿ الروم : ٢١ ﴾
           </motion.cite>
@@ -319,8 +319,8 @@ export default function CinematicIntro({ onComplete, onVisibilityChange }: Cinem
           transition={{ duration: reducedMotion ? 0.2 : 0.8, delay: reducedMotion ? 0.3 : 4.7, ease: "easeOut" }}
           className="cinematic-english-reference font-['Cormorant_Garamond','Bodoni_Moda','Didot','Playfair_Display',serif]"
         >
-          <span className="cinematic-ref-bracket">﴾</span>
-          <span className="cinematic-ref-text">QUR&apos;AN 30:21</span>
+          <span className="cinematic-ref-bracket">﴾ </span>
+          <span className="cinematic-ref-text">Ar-Rūm 30:21</span>
           <span className="cinematic-ref-bracket">﴿</span>
         </motion.p>
 
